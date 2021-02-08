@@ -1,11 +1,12 @@
 import { CreateClientDto } from "src/modules/clients/create-client.dto";
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToOne, JoinColumn } from "typeorm";
+import { AddressEntity } from "./address.entity";
 
 @Entity('persons')
 export class PersonEntity {
 
     //generate and fill personentity instance
-    generate(createClientDto?: CreateClientDto){
+    generate(createClientDto: CreateClientDto){
         this.id = createClientDto.id;
         this.cui = createClientDto.cui;
         this.name1 = createClientDto.name1;
@@ -52,6 +53,10 @@ export class PersonEntity {
 
     @UpdateDateColumn({type: "timestamp"})
     updatedAt?: Date;
+
+    @OneToOne(() => AddressEntity)
+    @JoinColumn()
+    address: AddressEntity;
 
 
 }

@@ -1,6 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Connection, Repository } from 'typeorm';
+import { AddressEntity } from '../database/entities/address.entity';
 import { ClientEntity } from '../database/entities/client.entity';
 import { PersonEntity } from '../database/entities/person.entity';
 import { CreateClientDto } from './create-client.dto';
@@ -22,11 +23,15 @@ export class ClientsService {
 
         const personEntity = new PersonEntity();
         personEntity.generate(createClientDto);
+        const addressEntity = new AddressEntity();
+        addressEntity.generate(createClientDto);
         let clientEntity = new ClientEntity();
         const queryRunner = this.connection.createQueryRunner();    
         await queryRunner.connect();
         await queryRunner.startTransaction();
         try {
+          const address = await queryRunner.manager.save(addressEntity);
+          personEntity.address = address;
           const person = await queryRunner.manager.save(personEntity);
           clientEntity.person = person;
           clientEntity = await queryRunner.manager.save(clientEntity);

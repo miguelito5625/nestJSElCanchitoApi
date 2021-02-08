@@ -8,6 +8,14 @@ export class CreateClientDto {
     birth_date?: Date;
     phone?: string;
     email?: string;
+
+    country: string;
+    departament: string;
+    municipality: string;
+    street: string;
+    reference: string;
+    zip_code: string;
+
     isActive?: boolean;
     createdAt?: Date;
     updatedAt?: Date;
