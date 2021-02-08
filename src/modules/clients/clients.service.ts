@@ -130,9 +130,6 @@ export class ClientsService {
     });
     person.isActive = !person.isActive;
     
-    // client.firstName = createClientDto.firstName;
-    // client.lastName = createClientDto.lastName;    
-
     const queryRunner = this.connection.createQueryRunner();
 
     await queryRunner.connect();

@@ -26,6 +26,7 @@ export class ClientsController {
         res.status(HttpStatus.OK).json({
             message: 'all clients',
             status: 'ok',
+            total_clients: clients.length,
             clients
         });
     }

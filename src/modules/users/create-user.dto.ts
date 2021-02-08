@@ -1,4 +1,4 @@
-export class CreateClientDto {
+export class CreateUserDto {
     id?: number;
     cui: string;
     name1: string;

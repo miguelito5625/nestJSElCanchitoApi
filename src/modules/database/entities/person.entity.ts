@@ -7,7 +7,6 @@ export class PersonEntity {
 
     //generate and fill personentity instance
     generate(createClientDto: CreateClientDto){
-        this.id = createClientDto.id;
         this.cui = createClientDto.cui;
         this.name1 = createClientDto.name1;
         this.name2 = createClientDto.name2;
