@@ -1,10 +1,10 @@
 import { CreateClientDto } from "src/modules/clients/create-client.dto";
 import {Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, Column} from "typeorm";
 
-@Entity('clients')
+@Entity('addresses')
 export class AddressEntity {
 
-    //generate and fill personentity instance
+    //generate and fill addressentity instance
     generate(createClientDto: CreateClientDto){
         this.country = createClientDto.country;
         this.departament = createClientDto.departament;

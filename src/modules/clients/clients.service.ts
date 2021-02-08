@@ -11,7 +11,7 @@ export class ClientsService {
 
     constructor(
         @InjectRepository(PersonEntity)
-        private personEntitysRepository: Repository<PersonEntity>,
+        private personRepository: Repository<PersonEntity>,
         @InjectRepository(ClientEntity)
         private clientsRepository: Repository<ClientEntity>,
         private connection: Connection
@@ -55,7 +55,7 @@ export class ClientsService {
     }
 
     async findAllWithPersonRelation(): Promise<ClientEntity[]> {
-      return await this.clientsRepository.find({ relations: ["person"] });
+      return await this.clientsRepository.find({ relations: ["person", "person.address"] });
     }
 
     async findOne(id: number): Promise<ClientEntity> {
@@ -76,7 +76,7 @@ export class ClientsService {
         return null;
       }
 
-      const person = await this.personEntitysRepository.findOne(client.person.id);      
+      const person = await this.personRepository.findOne(client.person.id);      
       person.generate(createClientDto);
 
       // client.firstName = createClientDto.firstName;
@@ -109,7 +109,7 @@ export class ClientsService {
 
     async switchActive(personId: number): Promise<PersonEntity> {
    
-      const person = await this.personEntitysRepository.findOne(personId);
+      const person = await this.personRepository.findOne(personId);
       
       const isActive = !person.isActive;
          
