@@ -43,6 +43,7 @@ export class ClientsService {
       Logger.error(err);
       // since we have errors lets rollback the changes we made
       await queryRunner.rollbackTransaction();
+      return null;
     } finally {
       // you need to release a queryRunner which was manually instantiated
       await queryRunner.release();
