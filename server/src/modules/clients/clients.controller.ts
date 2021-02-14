@@ -12,9 +12,7 @@ export class ClientsController {
 
     @Post()
     async createClient(@Body() createClientDto: CreateClientDto, @Res() res: Response) {
-        const client = await this.clientService.createOne(createClientDto);
-        console.log(client);
-        
+        const client = await this.clientService.createOne(createClientDto);        
         if (!client) {
             return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
                 message: 'client not created',
