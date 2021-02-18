@@ -19,17 +19,20 @@ export class ClientsController {
                 status: 'error'
             });
         }
-        res.status(HttpStatus.CREATED).json({
-            message: 'client created',
-            status: 'ok',
-            client
-        });
+
+        setTimeout(() => {
+           return res.status(HttpStatus.CREATED).json({
+                message: 'client created',
+                status: 'ok',
+                client
+            });
+        }, 2000);
     }
 
     @Get()
     async listAllClientWhitPersonRelation(@Res() res: Response) {
         const clients = await this.clientService.findAllWithPersonRelation();
-        res.status(HttpStatus.OK).json({
+        return res.status(HttpStatus.OK).json({
             message: 'all clients',
             status: 'ok',
             total_clients: clients.length,

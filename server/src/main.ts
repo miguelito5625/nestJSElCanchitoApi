@@ -30,4 +30,6 @@ bootstrap();
 //   then(v => console.log('Nest Ready')).
 //   catch(err => console.error('Nest broken', err));
 
-// export const elCanchitoApi = functions.https.onRequest(server);
+
+//   export const elCanchitoApi = functions.runWith({memory: "512MB"}).https.onRequest(server);
+  // export const elCanchitoApi = functions.https.onRequest(server);

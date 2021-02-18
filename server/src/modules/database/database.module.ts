@@ -11,7 +11,8 @@ import { Connection } from 'typeorm';
 //         "password": "Mariobross5625.",
 //         "database": "elcanchito",
 //         "entities": ["dist/**/*.entity{.ts,.js}"],
-//         "synchronize": true
+//         "synchronize": true,
+//         "keepConnectionAlive": true
 //       })]
 // })
 

@@ -35,7 +35,7 @@ export class PersonEntity {
     @Column()
     last_name2?: string;
 
-    @Column()
+    @Column({nullable: true})
     birth_date?: Date;
 
     @Column()
