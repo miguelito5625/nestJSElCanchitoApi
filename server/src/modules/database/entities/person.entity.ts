@@ -12,7 +12,7 @@ export class PersonEntity {
         this.name2 = createClientDto.name2;
         this.last_name1 = createClientDto.last_name1;
         this.last_name2 = createClientDto.last_name2;
-        this.birth_date = createClientDto.birth_date;
+        this.birth_date = createClientDto.birth_date?createClientDto.birth_date:null;
         this.phone = createClientDto.phone;
         this.email = createClientDto.email;
     }
@@ -35,7 +35,7 @@ export class PersonEntity {
     @Column()
     last_name2?: string;
 
-    @Column({nullable: true})
+    @Column({nullable: true, type: "date"})
     birth_date?: Date;
 
     @Column()
