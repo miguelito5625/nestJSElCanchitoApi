@@ -1,8 +1,25 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import * as fs from 'fs';
+
+
+// definimos la ruta
+const crPath = '/etc/letsencrypt/live/elcanchito.tk/fullchain.pem';
+const pkPath = '/etc/letsencrypt/live/elcanchito.tk/privkey.pem';
+const options: any = {};
+
+// validamos si los archivos existen
+if (fs.existsSync(crPath) && fs.existsSync(pkPath)) {
+  // cargamos los archivos sobre las options
+  options.httpsOptions = {
+    cert: fs.readFileSync(crPath),
+    key: fs.readFileSync(pkPath)
+  }
+}
+
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, options);
   app.enableCors();
   await app.listen(3000);
 }
@@ -31,5 +48,5 @@ bootstrap();
 //   catch(err => console.error('Nest broken', err));
 
 
-//   export const elCanchitoApi = functions.runWith({memory: "512MB"}).https.onRequest(server);
-  // export const elCanchitoApi = functions.https.onRequest(server);
+//   // export const elCanchitoApi = functions.runWith({memory: "512MB"}).https.onRequest(server);
+//   export const elCanchitoApi = functions.https.onRequest(server);
