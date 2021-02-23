@@ -1,8 +1,8 @@
 import {Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToOne, JoinColumn} from "typeorm";
 import { PersonEntity } from "./person.entity";
 
-@Entity('clients')
-export class ClientEntity {
+@Entity('suppliers')
+export class SupplierEntity {
 
     @PrimaryGeneratedColumn()
     id: number;
