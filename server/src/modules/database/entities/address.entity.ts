@@ -35,11 +35,4 @@ export class AddressEntity {
     @Column()
     zip_code: string;
 
-    @CreateDateColumn({type: "timestamp"})
-    createdAt: Date;
-
-    @UpdateDateColumn({type: "timestamp"})
-    updatedAt: Date;
-
-
 }

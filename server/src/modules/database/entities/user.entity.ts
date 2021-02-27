@@ -7,13 +7,6 @@ export class UserEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @CreateDateColumn({type: "timestamp"})
-    createdAt: Date;
-
-    @UpdateDateColumn({type: "timestamp"})
-    updatedAt: Date;
-
-
     @OneToOne(() => PersonEntity)
     @JoinColumn()
     person: PersonEntity;
