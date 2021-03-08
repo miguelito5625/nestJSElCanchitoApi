@@ -7,10 +7,11 @@ import { DatabaseModule } from './modules/database/database.module';
 import { SuppliersModule } from './modules/suppliers/suppliers.module';
 import { ProductsModule } from './modules/products/products.module';
 import { BrandsModule } from './modules/brands/brands.module';
+import { PurchasesModule } from './modules/purchases/purchases.module';
 
 
 @Module({
-  imports: [DatabaseModule, UsersModule, ClientsModule, SuppliersModule, BrandsModule, ProductsModule],
+  imports: [DatabaseModule, UsersModule, ClientsModule, SuppliersModule, BrandsModule, ProductsModule, PurchasesModule],
   controllers: [AppController],
   providers: [AppService],
 })

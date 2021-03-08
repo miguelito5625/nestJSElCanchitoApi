@@ -1,3 +1,4 @@
+import { CreatePurchaseDto } from "src/modules/purchases/create-purchase.dto";
 import {Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToOne, JoinColumn, OneToMany, Column, ManyToMany, JoinTable} from "typeorm";
 import { PersonEntity } from "./person.entity";
 import { ProductEntity } from "./product.entity";
@@ -6,6 +7,14 @@ import { PurchaseProductsProductEntity } from "./purchase-products-product.entit
 @Entity('purchases')
 export class PurchaseEntity {
 
+    //generate and fill purchaseentity instance
+    generate(createClientDto: CreatePurchaseDto){
+        this.description = createClientDto.description;
+        this.discount = createClientDto.discount;
+        this.subTotal = createClientDto.subTotal;
+        this.total = createClientDto.total;
+    }
+
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -13,10 +22,13 @@ export class PurchaseEntity {
     description: string;
 
     @Column()
-    total: number;
+    discount: number;
 
     @Column()
-    discount: number;
+    subTotal: number;
+
+    @Column()
+    total: number;
 
     @Column({ default: true })
     isActive?: boolean;

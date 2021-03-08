@@ -17,7 +17,7 @@ export class ProductsService {
         @InjectRepository(BrandEntity)
         private brandRepository: Repository<BrandEntity>,
         @InjectRepository(ProductEntity)
-        private productsRepository: Repository<ProductEntity>,
+        private productRepository: Repository<ProductEntity>,
         private connection: Connection
       ) {
     
@@ -61,15 +61,15 @@ export class ProductsService {
       }
     
       async findAll(): Promise<ProductEntity[]> {
-        return await this.productsRepository.find();
+        return await this.productRepository.find();
       }
     
       async findAllWithPersonRelation(): Promise<ProductEntity[]> {
-        return await this.productsRepository.find({ relations: ["supplier", "supplier.person", "supplier.person.address", "brand"] });
+        return await this.productRepository.find({ relations: ["supplier", "supplier.person", "supplier.person.address", "brand"] });
       }
     
       async findOne(id: number): Promise<ProductEntity> {
-        return await this.productsRepository.findOne({
+        return await this.productRepository.findOne({
           where: { id },
           relations: ["supplier", "supplier.person", "supplier.person.address", "brand"],
         });
@@ -77,7 +77,7 @@ export class ProductsService {
     
     
       async update(createProductDto: CreateProductDto): Promise<ProductEntity> {
-        const product = await this.productsRepository.findOne({
+        const product = await this.productRepository.findOne({
           where: { id: createProductDto.id }
         });
     
@@ -121,7 +121,7 @@ export class ProductsService {
     
       async switchActive(productId: number): Promise<ProductEntity> {
     
-        let product = await this.productsRepository.findOne({
+        let product = await this.productRepository.findOne({
           where: { id: productId }
         });
     
