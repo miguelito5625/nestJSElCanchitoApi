@@ -1,6 +1,7 @@
 import { CreateProductDto } from "src/modules/products/create-product.dto";
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToOne } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToOne, OneToMany } from "typeorm";
 import { BrandEntity } from "./brand.entity";
+import { PurchaseProductsProductEntity } from "./purchase-products-product.entity";
 import { SupplierEntity } from "./supplier.entity";
 
 @Entity('products')
@@ -42,15 +43,20 @@ export class ProductEntity {
     @Column({ default: true })
     isActive?: boolean;
 
-    @CreateDateColumn({type: "timestamp"})
-    createdAt?: Date;
-
-    @UpdateDateColumn({type: "timestamp"})
-    updatedAt?: Date;
+    @OneToMany(() => PurchaseProductsProductEntity, purchasesInProducts => purchasesInProducts.product)
+    purchasesInProducts?: PurchaseProductsProductEntity[];
 
     @ManyToOne(() => SupplierEntity, supplier => supplier.products, { nullable: true })
     supplier: SupplierEntity;
 
     @ManyToOne(() => BrandEntity, brand => brand.products, { nullable:true })
     brand: BrandEntity;
+
+    @CreateDateColumn({type: "timestamp"})
+    createdAt?: Date;
+
+    @UpdateDateColumn({type: "timestamp"})
+    updatedAt?: Date;
+
+    
 }
