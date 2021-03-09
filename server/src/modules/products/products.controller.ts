@@ -11,8 +11,8 @@ export class ProductsController {
     ) { }
 
     @Post()
-    async createClient(@Body() createClientDto: CreateProductDto, @Res() res: Response) {
-        const product = await this.productService.createOne(createClientDto);        
+    async createProduct(@Body() createProductDto: CreateProductDto, @Res() res: Response) {
+        const product = await this.productService.createOne(createProductDto);        
         if (!product) {
             return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
                 message: 'product not created',
@@ -30,8 +30,8 @@ export class ProductsController {
     }
 
     @Get()
-    async listAllClientWhitPersonRelation(@Res() res: Response) {
-        const products = await this.productService.findAllWithPersonRelation();
+    async listAllProductWhitRelation(@Res() res: Response) {
+        const products = await this.productService.findAllWithRelation();
         return res.status(HttpStatus.OK).json({
             message: 'all products',
             status: 'ok',
@@ -41,7 +41,7 @@ export class ProductsController {
     }
 
     @Get(':id')
-    async getOneClient(@Param('id') productId: number, @Res() res: Response) {
+    async getOneProduct(@Param('id') productId: number, @Res() res: Response) {
         const product = await this.productService.findOne(productId);
         if (!product) {
             return res.status(HttpStatus.NOT_FOUND).json({
@@ -57,8 +57,8 @@ export class ProductsController {
     }
 
     @Put()
-    async updateClient(@Body() createClientDto: CreateProductDto, @Res() res: Response) {
-        const product = await this.productService.update(createClientDto);
+    async updateProduct(@Body() createProductDto: CreateProductDto, @Res() res: Response) {
+        const product = await this.productService.update(createProductDto);
         if (!product) {
             return res.status(HttpStatus.NOT_FOUND).json({
                 message: 'product not found',

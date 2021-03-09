@@ -48,7 +48,7 @@ export class BrandsService {
         return await this.brandsRepository.find();
       }
     
-      // async findAllWithPersonRelation(): Promise<BrandEntity[]> {
+      // async findAllWithRelation(): Promise<BrandEntity[]> {
       //   return await this.brandsRepository.find({ relations: ["supplier", "supplier.person", "supplier.person.address", "brand"] });
       // }
     

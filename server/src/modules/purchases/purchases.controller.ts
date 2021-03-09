@@ -11,7 +11,7 @@ export class PurchasesController {
     ) { }
 
     @Post()
-    async createClient(@Body() createPurchaseDto: CreatePurchaseDto, @Res() res: Response) {
+    async createPurchase(@Body() createPurchaseDto: CreatePurchaseDto, @Res() res: Response) {
         const purchase = await this.purchaseService.createOne(createPurchaseDto);
         if (!purchase) {
             return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
@@ -28,35 +28,35 @@ export class PurchasesController {
 
     }
 
-    // @Get()
-    // async listAllClientWhitPersonRelation(@Res() res: Response) {
-    //     const purchases = await this.purchaseService.findAllWithPersonRelation();
-    //     return res.status(HttpStatus.OK).json({
-    //         message: 'all purchases',
-    //         status: 'ok',
-    //         total_purchases: purchases.length,
-    //         purchases
-    //     });
-    // }
+    @Get()
+    async listAllPurchaseWhitRelation(@Res() res: Response) {
+        const purchases = await this.purchaseService.findAllWithRelation();
+        return res.status(HttpStatus.OK).json({
+            message: 'all purchases',
+            status: 'ok',
+            total_purchases: purchases.length,
+            purchases
+        });
+    }
 
-    // @Get(':id')
-    // async getOneClient(@Param('id') purchaseId: number, @Res() res: Response) {
-    //     const purchase = await this.purchaseService.findOne(purchaseId);
-    //     if (!purchase) {
-    //         return res.status(HttpStatus.NOT_FOUND).json({
-    //             message: 'purchase not found',
-    //             status: 'error'
-    //         });
-    //     }
-    //     return res.status(HttpStatus.OK).json({
-    //         message: 'purchase found',
-    //         status: 'ok',
-    //         purchase
-    //     });
-    // }
+    @Get(':id')
+    async getOnePurchase(@Param('id') purchaseId: number, @Res() res: Response) {
+        const purchase = await this.purchaseService.findOne(purchaseId);
+        if (!purchase) {
+            return res.status(HttpStatus.NOT_FOUND).json({
+                message: 'purchase not found',
+                status: 'error'
+            });
+        }
+        return res.status(HttpStatus.OK).json({
+            message: 'purchase found',
+            status: 'ok',
+            purchase
+        });
+    }
 
     // @Put()
-    // async updateClient(@Body() createPurchaseDto: CreatePurchaseDto, @Res() res: Response) {
+    // async updatePurchase(@Body() createPurchaseDto: CreatePurchaseDto, @Res() res: Response) {
     //     const purchase = await this.purchaseService.update(createPurchaseDto);
     //     if (!purchase) {
     //         return res.status(HttpStatus.NOT_FOUND).json({

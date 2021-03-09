@@ -11,8 +11,8 @@ export class BrandsController {
     ) { }
 
     @Post()
-    async createClient(@Body() createClientDto: CreateBrandDto, @Res() res: Response) {
-        const brand = await this.brandService.createOne(createClientDto);        
+    async createBrand(@Body() createBrandDto: CreateBrandDto, @Res() res: Response) {
+        const brand = await this.brandService.createOne(createBrandDto);        
         if (!brand) {
             return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
                 message: 'brand not created',
@@ -30,7 +30,7 @@ export class BrandsController {
     }
 
     @Get()
-    async listAllClientWhitPersonRelation(@Res() res: Response) {
+    async listAllBrandWhitPersonRelation(@Res() res: Response) {
         const brands = await this.brandService.findAll();
         return res.status(HttpStatus.OK).json({
             message: 'all brands',
@@ -41,7 +41,7 @@ export class BrandsController {
     }
 
     @Get(':id')
-    async getOneClient(@Param('id') brandId: number, @Res() res: Response) {
+    async getOneBrand(@Param('id') brandId: number, @Res() res: Response) {
         const brand = await this.brandService.findOne(brandId);
         if (!brand) {
             return res.status(HttpStatus.NOT_FOUND).json({
@@ -57,8 +57,8 @@ export class BrandsController {
     }
 
     @Put()
-    async updateClient(@Body() createClientDto: CreateBrandDto, @Res() res: Response) {
-        const brand = await this.brandService.update(createClientDto);
+    async updateBrand(@Body() createBrandDto: CreateBrandDto, @Res() res: Response) {
+        const brand = await this.brandService.update(createBrandDto);
         if (!brand) {
             return res.status(HttpStatus.NOT_FOUND).json({
                 message: 'brand not found',

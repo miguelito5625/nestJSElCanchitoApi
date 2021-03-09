@@ -58,7 +58,7 @@ export class SuppliersService {
         return await this.suppliersRepository.find();
       }
     
-      async findAllWithPersonRelation(): Promise<SupplierEntity[]> {
+      async findAllWithRelation(): Promise<SupplierEntity[]> {
         return await this.suppliersRepository.find({ relations: ["person", "person.address"] });
       }
     

@@ -69,16 +69,16 @@ export class PurchasesService {
       //   return await this.purchaseProductsProductRepository.find();
       // }
     
-      // async findAllWithPersonRelation(): Promise<PurchaseEntity[]> {
-      //   return await this.purchaseProductsProductRepository.find({ relations: ["person", "person.address"] });
-      // }
+      async findAllWithRelation(): Promise<PurchaseEntity[]> {
+        return await this.purchaseRepository.find({ relations: ["productsInPurchase", "productsInPurchase.product"] });
+      }
     
-      // async findOne(id: number): Promise<PurchaseEntity> {
-      //   return await this.purchaseProductsProductRepository.findOne({
-      //     where: { id },
-      //     relations: ['person', 'person.address'],
-      //   });
-      // }
+      async findOne(id: number): Promise<PurchaseEntity> {
+        return await this.purchaseRepository.findOne({
+          where: { id },
+          relations: ['productsInPurchase', 'productsInPurchase.product'],
+        });
+      }
     
     
       // async update(createPurchaseDto: CreatePurchaseDto): Promise<PurchaseEntity> {
