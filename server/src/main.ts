@@ -7,7 +7,7 @@ import * as fs from 'fs';
 const crPath = '/etc/letsencrypt/live/elcanchito.tk/fullchain.pem';
 const pkPath = '/etc/letsencrypt/live/elcanchito.tk/privkey.pem';
 const options: any = {};
-
+//hola 5625
 // validamos si los archivos existen
 if (fs.existsSync(crPath) && fs.existsSync(pkPath)) {
   // cargamos los archivos sobre las options
